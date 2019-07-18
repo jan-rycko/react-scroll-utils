@@ -6,7 +6,7 @@ Readme soon...
 
 ## Installation
 ```sh
-npm install --save get-by-accessor
+npm install --save react-scroll-utils
 ```
 
 ## Issues and contribution
