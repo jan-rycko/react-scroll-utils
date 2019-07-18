@@ -162,9 +162,9 @@ class ScrollUtils<E extends HTMLElement = HTMLElement> implements IScrollUtilsOp
         this.isScrollMoveAnimated = animate;
 
         this.component.setState({
-            [`scroll${this.scroll}`]: scrollValue,
-            [`isAt${this.scroll}End`]: scrollValue === maxScroll,
-            [`isAt${this.scroll}Start`]: scrollValue === 0,
+            [`scroll${scroll}`]: scrollValue,
+            [`isAt${scroll}End`]: scrollValue === maxScroll,
+            [`isAt${scroll}Start`]: scrollValue === 0,
         }, window.setTimeout.bind(null,
             () => {
                 if (animate) this.lockScroll = false;
@@ -518,7 +518,7 @@ class ScrollUtils<E extends HTMLElement = HTMLElement> implements IScrollUtilsOp
     };
 
     getScrolledByStepChildrenStyle = (scroll = this.scroll) => {
-        switch (this.scroll) {
+        switch (scroll) {
             case Scroll.X:
                 return {
                     ...(this.isScrollMoveAnimated ? ScrollUtils.scrollTransitionStyle : {}),
