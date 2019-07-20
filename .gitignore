@@ -1,4 +1,5 @@
 .idea
 node_modules
+docs/README.md
 lib
 npm-debug.log

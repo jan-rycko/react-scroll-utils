@@ -7,6 +7,11 @@ It attaches to ref inside component, handles touch, scroll and wheel events cons
 npm install --save react-scroll-utils
 ```
 
+## Docs
+Complete docs can be found [here](https://github.com/jan-rycko/react-scroll-utils/tree/master/docs).
+
+Below some use cases in more details.
+
 ## Component
 
 For example purposes let's assume we want to create two types of components, that will handle two types of possible scrolling scenarios.
@@ -211,7 +216,23 @@ handleTouchAndWheel = (event: TouchAndWheelEvent) => {
 
 And that's it. Remember to set overflow: hidden; on scrollContainer.
 
+As our ToDo list grow, we might want to ensure that we always see last element on the list:
+```ts
+componentDidUpdate(prevProps) {
+    const {slides} = this.props;
+    const {isAtYEnd, maxYScroll} = this.state;
+    
+    const slidesAdded = slides.length !== prevProps.slides.length;
+    
+    if (slidesAdded && isAtYEnd) {
+        this.scrollUtils.smoothScrollToPosition(maxYScroll);
+    }
+}
+
+```
+
 There are more case specific methods in ScrollUtils.
+
 Feel free to explore them as well as different possibilities that'll arise while creating new scrollable components.
 
 ## Issues and contribution

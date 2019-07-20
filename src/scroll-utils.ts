@@ -73,19 +73,19 @@ class ScrollUtils<E extends HTMLElement = HTMLElement> implements IScrollUtilsOp
     }
 
     // element property selectors and calculations
-    getElementScrollSize = (element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    getElementScrollSize = (element: HTMLElement = this.scrollingElement, scroll = this.scroll): number => {
         return element[`scroll${ScrollSize[scroll]}`];
     };
 
-    getElementScroll = (element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    getElementScroll = (element: HTMLElement = this.scrollingElement, scroll = this.scroll): number => {
         return element[`scroll${ScrollDirection[scroll]}`];
     };
 
-    getElementSize = (element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    getElementSize = (element: HTMLElement = this.scrollingElement, scroll = this.scroll): number => {
         return element[`offset${ScrollSize[scroll]}`];
     };
 
-    getElementPosition = (element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    getElementPosition = (element: HTMLElement = this.scrollingElement, scroll = this.scroll): number => {
         return element[`offset${ScrollDirection[scroll]}`];
     };
 
@@ -93,11 +93,11 @@ class ScrollUtils<E extends HTMLElement = HTMLElement> implements IScrollUtilsOp
         return this.getElementPosition(element, scroll) - this.getElementScroll(this.scrollingElement, scroll);
     };
 
-    getMaxScroll = (element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    getMaxScroll = (element: HTMLElement = this.scrollingElement, scroll = this.scroll): number => {
         return this.getElementScrollSize(element, scroll) - this.getElementSize(element, scroll);
     };
 
-    setMaxScroll = (element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    setMaxScroll = (element: HTMLElement = this.scrollingElement, scroll = this.scroll): void => {
         element[`scroll${ScrollDirection[scroll]}`] = this.getMaxScroll(element, scroll);
     };
 
@@ -105,18 +105,18 @@ class ScrollUtils<E extends HTMLElement = HTMLElement> implements IScrollUtilsOp
         this.scrollToPosition(this.getElementScroll(element, scroll) + delta, element, scroll);
     };
 
-    scrollToPosition = (scrollValue: number, element: HTMLElement = this.scrollingElement, scroll = this.scroll) => {
+    scrollToPosition = (scrollValue: number, element: HTMLElement = this.scrollingElement, scroll = this.scroll): void => {
         const maxScroll = this.getMaxScroll(element, scroll);
 
         element[`scroll${ScrollDirection[scroll]}`] = clampToMax(scrollValue, maxScroll);
     };
 
-    getElementScrollSizeWithScrollStep = (step: number = this.step, pages: number = this.pages) => pages * step;
+    getElementScrollSizeWithScrollStep = (step: number = this.step, pages: number = this.pages): number => pages * step;
 
-    getMaxScrollWithScrollStep = (scrollStep: number = this.step, pages: number = this.pages) =>
+    getMaxScrollWithScrollStep = (scrollStep: number = this.step, pages: number = this.pages): number =>
         this.getElementScrollSizeWithScrollStep(scrollStep, pages) - scrollStep;
 
-    // STATE MANAGEMENT – so component can update it's state props if defined.
+    /** STATE MANAGEMENT – so component can update it's state props if defined. */
     setScrollingPosition = ({ margin = 10, callback, scroll = this.scroll }: ISetScrollingPosition = {}) => {
         const position: Partial<IXOrYScrollComponent<E>['state']> = {};
         const elementScroll = this.getElementScroll(this.scrollingElement, scroll);
