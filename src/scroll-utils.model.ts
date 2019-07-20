@@ -24,7 +24,7 @@ export interface IYScrollComponent<E extends HTMLElement = HTMLElement> extends 
     }
 }
 
-// FOR COMPONENTS THAT ARE NOT SURE WHICH SCROLL (X or Y) WILL BE USED
+// FOR COMPONENTS THAT ARE NOT SURE WHICH SCROLL (X or Y) WILL BE USED, FOR EXAMPLE PROVIDED BY PROP
 export type IXYScrollComponent<E extends HTMLElement = HTMLElement> = IXScrollComponent<E> & IYScrollComponent<E>;
 // FOR COMPONENTS THAT WILL USE EITHER SCROLL, FOR EXAMPLE WHICH ONE IS BIGGER
 export type IXOrYScrollComponent<E extends HTMLElement = HTMLElement> = IXScrollComponent<E> | IYScrollComponent<E>;

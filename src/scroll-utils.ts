@@ -7,7 +7,6 @@ import {
     ISetScrollingPosition,
     ISmoothScroll,
     IXOrYScrollComponent,
-    IXYScrollComponent,
     TouchAndWheelEvent,
     Scroll,
     ScrollDirection,
@@ -119,7 +118,7 @@ class ScrollUtils<E extends HTMLElement = HTMLElement> implements IScrollUtilsOp
 
     // STATE MANAGEMENT – so component can update it's state props if defined.
     setScrollingPosition = ({ margin = 10, callback, scroll = this.scroll }: ISetScrollingPosition = {}) => {
-        const position: Partial<IXOrYScrollComponent['state']> = {};
+        const position: Partial<IXOrYScrollComponent<E>['state']> = {};
         const elementScroll = this.getElementScroll(this.scrollingElement, scroll);
         const maxScroll = this.getMaxScroll(this.scrollingElement, scroll);
 
